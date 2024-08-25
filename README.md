@@ -1,160 +1,82 @@
-# PMT (Performance Monitoring Tool) 
+# pmt - Python Monitoring Tool
 
-PMT is a Python library specifically designed for monitoring and gathering performance metrics on Linux systems. With PMT, you can easily access vital information about your system's resources such as CPU usage, RAM usage, network bandwidth, storage, and more.
+## Overview
+
+`pmt` is a Python library designed to provide easy access to system monitoring functionalities on Linux-based operating systems. It allows users to retrieve various system metrics, including CPU usage, memory usage, network statistics, uptime, disk storage, and more.
 
 ## Features
 
-- Retrieve operating system information (version and distribution)
-- Get system architecture (32-bit or 64-bit)
-- Access the Linux kernel version
-- Retrieve the hostname
-- Monitor network bandwidth usage
-- Get system uptime
-- Check CPU load and usage
-- Count the number of running processes
-- Get RAM details
-- Conduct ping tests to Google and Cloudflare
-- Retrieve storage and inode usage
+- **Comprehensive System Monitoring**: Easily access information about operating system, architecture, and kernel version.
+- **Network Monitoring**: Track network bandwidth usage and ping response times to major DNS servers.
+- **Resource Usage**: Check CPU load, memory usage, process count, and inode usage.
+- **Disk Storage Insights**: Get detailed information about disk space and inode availability.
 
 ## Installation
 
-To use PMT, you need to have Python installed on your machine. Download the `pmt.py` file and include it in your project.
+To install `pmt`, clone the repository and install the required dependencies listed in `requirements.txt`:
 
-To install the required package, run:
 ```bash
-pip install psutil
+git clone https://github.com/yourusername/pmt.git
+cd pmt
+pip install -r requirements.txt
 ```
 
 ## Usage
 
-### Importing the Library
-
-First, import the library:
-```python
-from pmt import pmt
-```
-
-### Creating an Instance
-
-Create an instance of the `pmt` class:
-```python
-monitor = pmt()
-```
-
-### Method Explanations
-
-1. **`getOs()`**
-   - Returns the operating system name and version.
-   - **Usage:**
-     ```python
-     print(monitor.getOs())
-     ```
-
-2. **`getArch()`**
-   - Returns the system architecture (e.g., x86_64).
-   - **Usage:**
-     ```python
-     print(monitor.getArch())
-     ```
-
-3. **`getKernel()`**
-   - Returns the Linux kernel version.
-   - **Usage:**
-     ```python
-     print(monitor.getKernel())
-     ```
-
-4. **`getHostname()`**
-   - Returns the hostname of the machine.
-   - **Usage:**
-     ```python
-     print(monitor.getHostname())
-     ```
-
-5. **`getBandwidthUsage()`**
-   - Monitors network bandwidth by tracking upload and download data.
-   - Returns a dictionary with download and upload amounts in bytes.
-   - **Usage:**
-     ```python
-     print(monitor.getBandwidthUsage())
-     ```
-
-6. **`getUptime()`**
-   - Returns the system uptime in a human-readable format.
-   - **Usage:**
-     ```python
-     print(monitor.getUptime())
-     ```
-
-7. **`getCpu()`**
-   - Returns CPU statistics, including the number of cores, load average, and CPU usage percentage.
-   - **Usage:**
-     ```python
-     print(monitor.getCpu())
-     ```
-
-8. **`getProcess()`**
-   - Returns the count of currently running processes.
-   - **Usage:**
-     ```python
-     print(monitor.getProcess())
-     ```
-
-9. **`getRam()`**
-   - Returns RAM usage details including total, used, available memory, and usage percentage.
-   - **Usage:**
-     ```python
-     print(monitor.getRam())
-     ```
-
-10. **`getPing()`**
-    - Performs a ping test to Google and Cloudflare, returning the latency time.
-    - **Usage:**
-      ```python
-      print(monitor.getPing())
-      ```
-
-11. **`getStorage()`**
-    - Provides information about disk usage, including size, used, available space, and mount points.
-    - Returns a dictionary where each key is a filesystem.
-    - **Usage:**
-      ```python
-      print(monitor.getStorage())
-      ```
-
-12. **`getInode()`**
-    - Returns inode usage statistics for each filesystem.
-    - **Usage:**
-      ```python
-      print(monitor.getInode())
-      ```
-
-### Example
-
-Here’s a simple example that demonstrates how to use the PMT library:
+For a quick start, refer to the sample file provided in the repository. Below is a simple example of how to use the `pmt` library:
 
 ```python
 from pmt import pmt
 
 monitor = pmt()
-
-print("Operating System:", monitor.getOs())
-print("CPU Details:", monitor.getCpu())
-print("Memory Usage:", monitor.getRam())
-print("Network Bandwidth Usage:", monitor.getBandwidthUsage())
-print("Disk Usage:", monitor.getStorage())
-print("Ping to Google:", monitor.getPing()['google ping'])
+# see sample.py
 ```
 
-## Requirements
+## Functions
 
-- Python 3.x
-- `psutil` library (install with `pip install psutil`)
+### `getOs()`
+- **Output**: Returns the name and version of the operating system (e.g., "Ubuntu 20.04").
 
-## Contributing
+### `getArch()`
+- **Output**: Returns the system architecture (e.g., "x86_64").
 
-Contributions are welcome! If you have suggestions or find bugs, please open an issue or submit a pull request.
+### `getKernel()`
+- **Output**: Returns the kernel version (e.g., "5.4.0-42-generic").
+
+### `getHostname()`
+- **Output**: Returns the system hostname (e.g., "my-computer").
+
+### `getAddr()`
+- **Output**: Returns the system's IP address (e.g., "192.168.1.2").
+
+### `getBandwidthUsage()`
+- **Output**: Returns upload and download bandwidth usage (e.g., `{"download": 50000, "upload": 120000}`).
+
+### `getUptime()`
+- **Output**: Returns the system's uptime (e.g., "up 5 hours, 20 minutes").
+
+### `getCpu()`
+- **Output**: Returns CPU core count and load information (e.g., `{"cores": 4, "loadAvg": 0.75, "use": 18}`).
+
+### `getProcess()`
+- **Output**: Returns the count of running processes (e.g., `42`).
+
+### `getRam()`
+- **Output**: Returns RAM total, used, available, and usage percentage (e.g., `{"total": 16000000000, "used": 8000000000, "available": 8000000000, "use": 50}`).
+
+### `getPing()`
+- **Output**: Returns the ping time to Google and Cloudflare (e.g., `{"google": 18, "cloudflare": 16}`).
+
+### `getStorage()`
+- **Output**: Returns storage usage statistics for all mounted filesystems (e.g., `{"filesystem": {"size": "100G", "used": "50G", "available": "50G", "use": "50%"}}`).
+
+### `getInode()`
+- **Output**: Returns inode usage statistics for all mounted filesystems (e.g., `{"filesystem": {"Inodes": "1000000", "IUsed": "500000", "IFree": "500000", "use": "50%"}}`).
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+If you would like to contribute to `pmt`, please open an issue or submit a pull request.
