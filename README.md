@@ -16,7 +16,7 @@
 To install `pmt`, clone the repository and install the required dependencies listed in `requirements.txt`:
 
 ```bash
-git clone https://github.com/yourusername/pmt.git
+git clone https://github.com/imafaz/pmt.git
 cd pmt
 pip install -r requirements.txt
 ```
